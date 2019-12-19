@@ -16,6 +16,14 @@ end
 
 post '/login' do
   user = User.find_by(email: params[:email])
+  given_password = params[:password]
+  if user.password == given_password
+    session[:user_id] == user.id
+    redirect '/profile'
+  else
+    flash[:error] = "Did you mean: #{user.password} "
+    redirect '/login'
+  end
 end
 
 get '/signup' do
@@ -38,5 +46,6 @@ post '/signup' do
 end
 
 get '/profile' do
+  redirect '/' unless session[:user_id]
   erb :profile
 end
