@@ -1,4 +1,12 @@
+<h1>SIGN UP</h1>
 
+<% if flash[:error] %>
+<ol>
+  <%flash[:error].each do |error|%>
+  <li><%error%></li>
+
+</ol>
+<% end %>
 
 <form class="" action="/signup" method="POST">
   <input type="text" name="user[name]" placeholder="NAME" value=""><br>
